@@ -1,17 +1,20 @@
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { Filter } from "./Filter/Filter";
-import { Layout } from "./Layout/Layout.styled";
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+import { ToastContainer } from 'react-toastify';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getError, getIsLoading } from "redux/selectors";
-import { fetchContacts } from "redux/Operations";
+
+import authOperations from "redux/Auth/authOperation";
+import authSelectors from "redux/Auth/authSelectors";
+
+import { Layout } from "./Layout/Layout.styled";
+const HomeView = lazy(()=> import("./RegisterView/Home"));
+const RegisterView = lazy(()=> import("./RegisterView/RegisterView"));
+const Login = lazy(()=> import("./RegisterView/Login"));
+const Contacts = lazy(()=> import("./RegisterView/Contacts"));
 
 export const App = () => {
-
-const isLoading = useSelector(getIsLoading);
-const error = useSelector(getError);
 const dispatch = useDispatch();
 
 useEffect(()=>{
@@ -19,14 +22,16 @@ dispatch(fetchContacts());
 }, [dispatch] );
 
   return (
-    <Layout>
-     <h1>Phonebook</h1>
-      <ContactForm  />
-      <h2>Contacts</h2>
-      {isLoading && <h3>Loading....</h3>}
-      {error && <h3>{error}</h3>}
-      <Filter />
-      <ContactList />
-    </Layout>
+    <>
+<Routes>
+  <Route path="/" element={<Layout/>}>
+<Route index element= {<HomeView/>}/>
+<Route path="/register" element={<RegisterView/>}/>
+<Route path="/login" element={<Login/>}/>
+<Route path="/contacts" element={<Contacts/>}/>
+  </Route>
+</Routes>
+<ToastContainer />
+  </>
   );
 };

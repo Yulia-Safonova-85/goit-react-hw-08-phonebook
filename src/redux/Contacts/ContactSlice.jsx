@@ -5,7 +5,8 @@ import {fetchContacts, addContact, deleteContact} from './Operations';
 const InitialContactsState = {
 items: [],
 isLoading: false,
-error: null
+error: null,
+filter: ''
 }
 
 const handlePending = state => {
@@ -20,6 +21,11 @@ const handleRejected = (state, action) => {
 const contactSlice = createSlice({
   name:'contacts',
   initialState:InitialContactsState,
+  reducers:{
+    setFilterValue(_, action) {
+      return action.payload;
+    },
+  },
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [fetchContacts.fulfilled](state,action){

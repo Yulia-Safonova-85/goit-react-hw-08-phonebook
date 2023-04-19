@@ -1,9 +1,9 @@
 import { Formik, Field, } from 'formik';
 import * as Yup from 'yup';
 import {FormField, Form,ErrorMessage} from './ContactForm.styled';
-import { addContact } from 'redux/Operations';
+import { addContact } from 'redux/Contacts/Operations';
 import { useDispatch,useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/Contacts/selectors';
 
 const schema = Yup.object().shape({
    name: Yup.string()

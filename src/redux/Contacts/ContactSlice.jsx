@@ -52,7 +52,7 @@ const contactSlice = createSlice({
     [deleteContact.rejected]: handleRejected,
   }
 })
-
+export const { setFilterValue } = contactSlice.actions;
 export const contactsReducer = contactSlice.reducer;
 
 

@@ -3,7 +3,7 @@ import AuthNav from "./AuthNav";
 import UserMenu from "./UserMenu";
 
 import { useSelector } from "react-redux";
-import {authSelectors} from "../redux/Auth";
+import authSelectors from "redux/Auth/authSelectors";
 
 
 export default function AppBar(){

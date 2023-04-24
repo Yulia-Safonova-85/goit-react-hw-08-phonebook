@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {setFilterValue} from 'redux/FilterSlice';
+import {setFilterValue} from "redux/Contacts/ContactSlice";
 import { getFilter } from "redux/Contacts/selectors";
 import { FindFilter, Field } from "./Filter.styled";
 

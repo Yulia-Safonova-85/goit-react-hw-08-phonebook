@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {authOperation} from '../redux/Auth/authOperation';
+import authOperations from '../redux/Auth/authOperation';
 
 export default function Login(){
     const dispath = useDispatch();
@@ -20,7 +20,7 @@ const handleChange = ({target: {name, value}}) => {
 
 const handleSubmit = evt => {
     evt.preventDefault();
-    dispath(authOperation.logIn({email,password}));
+    dispath(authOperations.logIn({email,password}));
     setEmail('');
     setPassword('');
 };

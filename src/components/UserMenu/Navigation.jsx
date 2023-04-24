@@ -9,10 +9,10 @@ const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 return (
 <nav>
 {isLoggedIn ? (
-<NavLink>
+<NavLink to ="/contacts">
     Contacts
 </NavLink>) : 
-(<NavLink> Home</NavLink>)
+(<NavLink to="/"> Home</NavLink>)
 }
 </nav>
 

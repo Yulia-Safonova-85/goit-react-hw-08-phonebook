@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { infoToast } from "components/Notification";
 
-
-axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
     set(token){
@@ -13,35 +13,65 @@ const token = {
     }
 };
 
-export const register = createAsyncThunk(
+ const register = createAsyncThunk(
 "auth/register",
-async (credentials)=> {
+async (credentials,thunkAPI)=> {
     try{
         const response = await axios.post("/users/signup",credentials);
         token.set(response.data.token);
         return response.data;
+    } catch(error){
+        infoToast(`This user is already registered`);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+}
+);
+
+ const logIn= createAsyncThunk("auth/login", async (credentials,thunkAPI) =>{
+    try{
+        const response = await axios.post("/users/login",credentials);
+        token.set(response.data.token);
+        return response.data;
+    } catch(error){
+        infoToast(`Incorrect login or password`);
+        return thunkAPI.rejectWithValue(error.message);
+    } 
+    },
+);
+
+ const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI)=> {
+    try {
+        await axios.post("/users/logout");
+        token.unset();
     } catch(error){
         return thunkAPI.rejectWithValue(error.message);
     }
 }
 );
 
-export const logIn= createAsyncThunk("auth/login", async credentials =>{
-    try{
-        const response = await axios.post("/users/login",credentials);
-        token.set(response.data.token);
-        return response.data;
-    } catch(error){
-        return thunkAPI.rejectWithValue(error.message);
-    } 
-    }
-);
+const fetchCurrentUser = createAsyncThunk("auth/refresh", 
+async (_, thunkAPI)=>{
+const state = thunkAPI.getState();
+const persistedToken = state.auth.token;
 
-export const logOut = createAsyncThunk("auth/logout", async ()=> {
-    try {
-        await axios.post("/users/logout");
-        token.unset();
-    } catch(error){
-        return error.message;
-    }
+if (persistedToken === null){
+    return thunkAPI.rejectWithValue();
+}
+try {
+    token.set(persistedToken); 
+    const response = await axios.get("/users/current");
+   return response.data;
+} catch(error){
+    return thunkAPI.rejectWithValue(error.message);
+}
 })
+
+const authOperations = {
+    register, 
+    logIn,
+    logOut,
+    fetchCurrentUser,
+};
+
+export default authOperations;
+

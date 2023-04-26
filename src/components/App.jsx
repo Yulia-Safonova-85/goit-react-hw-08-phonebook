@@ -11,7 +11,7 @@ import authOperations from "../redux/Auth/authOperation";
 import { Layout } from "./Layout/Layout";
 import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "routes/PublicRoutes";
-import AppBar from "./UserMenu/AppBar";
+
 const HomeView = lazy(()=> import("../RegisterView/Home"));
 const RegisterView = lazy(()=> import("../RegisterView/RegisterView"));
 const Login = lazy(()=> import("../RegisterView/Login"));
@@ -26,9 +26,9 @@ dispatch(authOperations.fetchCurrentUser());
 }, [dispatch] );
 
   return ( 
-  isRefreshing ? (<b>Refreshing contacts...</b>) : (
-    <>
-    <AppBar/>
+     <> 
+  {isRefreshing ? (<b>Refreshing contacts...</b>) : 
+    (
 <Routes>
   <Route path="/" element={<Layout/>}>
 <Route index element= {
@@ -56,8 +56,8 @@ dispatch(authOperations.fetchCurrentUser());
   </Route>
 
 </Routes>
-<ToastContainer />
+  )}
+  <ToastContainer />
   </>
-  )
-  );
+);
 };

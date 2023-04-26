@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {fetchContacts, addContact, deleteContact} from './Operations';
 
-const InitialContactsState = {
+const initialContactsState = {
 items: [],
 isLoading: false,
 error: null,
@@ -20,7 +20,7 @@ const handleRejected = (state, action) => {
 
 const contactSlice = createSlice({
   name:'contacts',
-  initialState:InitialContactsState,
+  initialState:initialContactsState,
   reducers:{
     setFilterValue(_, action) {
       return action.payload;

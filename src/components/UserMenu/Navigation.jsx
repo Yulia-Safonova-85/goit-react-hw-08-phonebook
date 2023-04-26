@@ -8,14 +8,13 @@ const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
 return (
 <nav>
-{isLoggedIn ? (
+<NavLink to="/">Home</NavLink>
+{isLoggedIn && (
 <NavLink to ="/contacts">
     Contacts
-</NavLink>) : 
-(<NavLink to="/"> Home</NavLink>)
+</NavLink>) 
 }
 </nav>
-
 );
 };
 

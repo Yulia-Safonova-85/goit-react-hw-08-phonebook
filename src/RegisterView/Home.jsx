@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const HomeView = ()=> {
+const Home = ()=> {
     <div>
         <h1>Welcome to the Phonebook</h1>
         <NavLink to="/login">Log In</NavLink>
@@ -9,4 +9,4 @@ const HomeView = ()=> {
     </div>
 }
 
-export default HomeView;
+export default Home;

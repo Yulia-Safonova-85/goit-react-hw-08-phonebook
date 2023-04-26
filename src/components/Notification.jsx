@@ -24,7 +24,7 @@ export const successToast = text => {
     });
   };
   
-  export const deleteToast = text => {
+  export const errorToast = text => {
     toast.error(text, {
       position: 'top-right',
       autoClose: 3000,

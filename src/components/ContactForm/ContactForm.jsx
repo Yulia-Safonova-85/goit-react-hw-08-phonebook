@@ -4,6 +4,7 @@ import {FormField, Form,ErrorMessage} from './ContactForm.styled';
 import { addContact } from 'redux/Contacts/Operations';
 import { useDispatch,useSelector } from 'react-redux';
 import { getContacts } from 'redux/Contacts/selectors';
+import { infoToast } from "components/Notification";
 
 const schema = Yup.object().shape({
    name: Yup.string()
@@ -23,7 +24,7 @@ const contacts = useSelector(getContacts);
         const findName = contacts.find(({name}) => name.toLowerCase() === normalizedName);
 
         if (findName) {
-            return  alert(`${values.name} is already in contacts`)
+            return infoToast(`${values.name} is already in contact`);
            }
            dispatch(addContact(values));
            actions.resetForm();

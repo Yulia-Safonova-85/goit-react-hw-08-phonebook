@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import authOperations from '../redux/Auth/authOperation';
 
 export default function Login(){
-    const dispath = useDispatch();
+    const dispatch = useDispatch();
     const [email,setEmail] = useState('');
     const [password, setPassword]= useState('');
 
@@ -20,7 +20,7 @@ const handleChange = ({target: {name, value}}) => {
 
 const handleSubmit = evt => {
     evt.preventDefault();
-    dispath(authOperations.logIn({email,password}));
+    dispatch(authOperations.logIn({email,password}));
     setEmail('');
     setPassword('');
 };

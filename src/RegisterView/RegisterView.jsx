@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from '../redux/Auth/authOperation';
+import {  Button, Typography,}from '@mui/material';
+import {FormField} from "../components/Layout/Layout.styled";
 
 export default function RegisterView(){
 const dispatch = useDispatch();
@@ -31,24 +33,38 @@ const handleSubmit = evt => {
 
 return(
 <div>
-<h1>Page user Registration</h1>
-
-<form onSubmit={handleSubmit} autoComplete="off">
-
-<label> Name
-<input type="text" name="name" value={name} onChange={handleChange} />
-</label>
-
-<label>Email
- <input type="email" name="email" onChange={handleChange}/>   
- 
-</label>
-<label>Password
-<input type="password" name="password" onChange={handleChange} />    
-</label>
-
-<button type="submit">Registration</button>
-</form>
+<Typography
+variant="h6"
+sx={{mt:4}}
+>
+    Page user Registration</Typography>
+    
+    <FormField onSubmit={handleSubmit} autoComplete="off">
+        <input
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Name"
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          value={email}
+          placeholder="example@email.com"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          placeholder="password"
+          onChange={handleChange}
+        />
+        <Button variant="outlined" size="small" sx={{mt:4}}
+ type="submit">Register</Button>
+    </FormField>
 </div>
 );
 };
+

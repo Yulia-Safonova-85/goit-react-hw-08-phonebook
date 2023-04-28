@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from '../redux/Auth/authOperation';
+import {TextField, Button, Typography }from '@mui/material';
 
 export default function Login(){
     const dispatch = useDispatch();
@@ -27,20 +28,31 @@ const handleSubmit = evt => {
 
     return (
 <div>
-<h1>LogIn Page</h1>
+<Typography
+variant="h6"
+sx={{mt:4}}
+>LogIn Page</Typography>
+
 <form onSubmit={handleSubmit}>
 
-<label>Email
- <input type="email" name="email" onChange={handleChange}/>   
- 
-</label>
-<label>Password
-<input type="password" name="password" onChange={handleChange} />    
-</label>
+<TextField 
+ label="Email"
+  variant="outlined" 
+  sx={{
+    mr:'2rem'
+  }}
+  type="email" name="email" onChange={handleChange}/>
+  
+<TextField label="Password"
+  variant="outlined" 
+  sx={{
+    mr:'2rem'
+  }}
+  type="password" name="password" onChange={handleChange} />  
+   </form> 
+<Button variant="outlined" size="large" sx={{mt:4}}
+ type="submit">Log In</Button>
 
-<button type="submit">Log In</button>
-
-</form>
 </div>
     );
 };

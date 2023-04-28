@@ -13,3 +13,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+а {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  }
+
+  h1, h2 {
+    line-height: 1.22;
+    color: '#FFFFFF';
+    background-color:'#338309';
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 8px;
+    text-transform: uppercase;
+  }

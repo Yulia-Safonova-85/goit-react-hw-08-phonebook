@@ -1,4 +1,4 @@
-import AppBar from "components/UserMenu/AppBar";
+import Header from "components/UserMenu/AppBar";
 import { Outlet } from "react-router-dom";
 import { Wraper } from "./Layout.styled";
 import { Suspense } from "react";
@@ -8,7 +8,7 @@ import { Loader } from "components/Loader/Loader";
 export const Layout = () => {
 return(
     <Wraper>
-        <AppBar/>
+        <Header/>
         <main>
         <Suspense fallback={<Loader/>}>
         <Outlet/>

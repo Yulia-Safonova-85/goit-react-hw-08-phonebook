@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { ContactsItem } from "components/ContactsItem/ContactsItem"; 
 import { getContacts, getFilter} from 'redux/Contacts/selectors';
-import { List, Container } from "./ContactList.styled";
-
+import { List} from "./ContactList.styled";
+import Box from '@mui/material/Box';
 
 export const ContactList = () => {
   
@@ -19,12 +19,12 @@ export const ContactList = () => {
     const findFilterContacts = findContact();
 
     return (
-        <Container>
+        <Box sx={{ width: 600, border: '1px dashed blue', mt:4 }}>
             <List>
                 {findFilterContacts.map(contact => 
                 (<ContactsItem key ={contact.id} contact={contact}/>)
                      )}  
             </List>
-        </Container>
+        </Box>
     )
 }

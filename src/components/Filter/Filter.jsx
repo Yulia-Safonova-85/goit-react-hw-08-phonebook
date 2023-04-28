@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import {setFilterValue} from "redux/Contacts/ContactSlice";
+import {setFilterValue} from "redux/Contacts/FilterSlice";
 import { getFilter } from "redux/Contacts/selectors";
-import { FindFilter, Field } from "./Filter.styled";
+
+import { Stack, TextField, Typography } from "@mui/material";
 
 
   export const Filter = () => {
@@ -14,12 +15,26 @@ dispatch(setFilterValue(evt.target.value ));
   };
 
     return (
-        <FindFilter>
-            Find contacts by name
-            <Field type="text" 
+           <Stack
+      component="form"
+      sx={{
+        width: '25ch',
+      }} spacing={2}
+      noValidate
+      autoComplete="off"> 
+
+            <Typography variant="h6">Find contacts by name </Typography> 
+            <TextField
+            label="Find"
+            variant="outlined" 
+            size="small"
+            sx={{
+              mr:'2rem'
+            }}type="text" 
             name="filter" value={filter} 
-            placeholder="Find contact" 
-            onChange={changeFilter} />
-        </FindFilter>
+            onChange={changeFilter}
+            ></TextField>
+          </Stack>
+       
     )
 };

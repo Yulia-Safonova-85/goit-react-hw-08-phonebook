@@ -5,6 +5,7 @@ import { addContact } from 'redux/Contacts/Operations';
 import { useDispatch,useSelector } from 'react-redux';
 import { getContacts } from 'redux/Contacts/selectors';
 import { infoToast } from "components/Notification";
+import {  Button }from '@mui/material';
 
 const schema = Yup.object().shape({
    name: Yup.string()
@@ -55,7 +56,8 @@ const contacts = useSelector(getContacts);
   required />
                     <ErrorMessage name="number" component="span" />
                 </FormField>
-            <button type='submit'>Add contact</button> 
+                <Button variant="outlined" 
+             type='submit'>Add contact</Button> 
         </Form>
         </Formik>
     )

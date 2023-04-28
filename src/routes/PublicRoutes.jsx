@@ -5,6 +5,7 @@ import authSelectors from "../redux/Auth/authSelectors";
 const PublicRoute = ({children, restricted = false, redirectTo = '/'})=> {
 
 const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
 const shouldRedirect = isLoggedIn && restricted;
 return shouldRedirect ? <Navigate to={redirectTo}/> : children;
 };

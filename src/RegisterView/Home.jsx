@@ -1,12 +1,16 @@
+import {  Typography } from "@mui/material";
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 
 const Home = ()=> {
-    <div>
-        <h1>Welcome to the Phonebook</h1>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/register">Registration</NavLink>
-    </div>
+  return (
+    
+        <Typography
+variant="h3" color= "blue" sx={{mt: 8, ml:8}}
+>Welcome to the Phonebook</Typography>
+       
+   )
+    
 }
 
 export default Home;

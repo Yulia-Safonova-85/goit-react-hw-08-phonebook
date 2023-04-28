@@ -1,12 +1,20 @@
+import {LinkWraper, StyledNav} from "../Layout/Layout.styled";
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 
 export default function AuthNav(){
 return (
-    <div>
-        <NavLink to="/register">Registration</NavLink>
-        <NavLink to="/login">Log in</NavLink>
-    </div>
+    <LinkWraper>
+<StyledNav to="/register">
+        Register
+      </StyledNav>
+      <StyledNav to="/login">
+        Log In
+      </StyledNav>
+
+    </LinkWraper>
+
 )
 
 };
+

@@ -11,8 +11,9 @@ import authOperations from "../redux/Auth/authOperation";
 import { Layout } from "./Layout/Layout";
 import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "routes/PublicRoutes";
+import { Container } from "@mui/material";
 
-const HomeView = lazy(()=> import("../RegisterView/Home"));
+const Home = lazy(()=> import("../RegisterView/Home"));
 const RegisterView = lazy(()=> import("../RegisterView/RegisterView"));
 const Login = lazy(()=> import("../RegisterView/Login"));
 const Contacts = lazy(()=> import("../RegisterView/Contacts"));
@@ -26,15 +27,16 @@ dispatch(authOperations.fetchCurrentUser());
 }, [dispatch] );
 
   return ( 
-     <> 
+     <Container 
+     sx={{
+      mt:'1rem'
+     }}> 
   {isRefreshing ? (<b>Refreshing contacts...</b>) : 
     (
 <Routes>
   <Route path="/" element={<Layout/>}>
-<Route index element= {
-   <PublicRoute> 
-    <HomeView/> 
-    </PublicRoute> }/>
+  <Route index element={<Home/>} />
+
 
 <Route path="/register" element={
 <PublicRoute restricted> 
@@ -58,6 +60,6 @@ dispatch(authOperations.fetchCurrentUser());
 </Routes>
   )}
   <ToastContainer />
-  </>
+  </Container>
 );
 };

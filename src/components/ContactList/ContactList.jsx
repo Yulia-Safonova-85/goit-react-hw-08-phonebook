@@ -6,12 +6,12 @@ import Box from '@mui/material/Box';
 
 export const ContactList = () => {
   
-   const contacts = useSelector(getContacts);
+   const contact = useSelector(getContacts);
    const filter = useSelector(getFilter);
 
     const findContact = () => {
         const normalizedFilter = filter.toLowerCase();
-        return contacts.filter(({ name }) =>
+        return contact.filter(({ name }) =>
           name.toLowerCase().includes(normalizedFilter)
         );
         }

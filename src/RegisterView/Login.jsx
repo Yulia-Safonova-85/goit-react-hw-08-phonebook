@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from '../redux/Auth/authOperation';
-import {TextField, Button, Typography, Box }from '@mui/material';
+import { Button, Typography }from '@mui/material';
+import {FormField} from "../components/Layout/Layout.styled";
 
 export default function Login(){
     const dispatch = useDispatch();
@@ -32,40 +33,17 @@ const handleSubmit = evt => {
 variant="h6"
 sx={{mt:4}}
 >LogIn Page</Typography>
-<Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
+<FormField onSubmit={handleSubmit} autoComplete="off">
 
-<TextField 
- label="Email"
- id="outlined-controlled"
- variant="outlined" 
-  sx={{
-    mr:'2rem'
-  }}
-  type="email" name="email" value={email} onChange={handleChange}/>
+<input 
+  type="email" name="email" value={email} placeholder="example@email.com" onChange={handleChange}/>
   
-<TextField 
-  label="Password"
-  id="password"
-  variant="outlined" 
-  sx={{
-    mr:'2rem'
-  }}
-  autoComplete="current-password"
-  type="password" name="password" value={password} onChange={handleChange} /> 
+<input 
+  type="password" name="password" value={password} placeholder="password" onChange={handleChange} /> 
    
-   </Box>
-
-<Button variant="outlined" size="large" sx={{mt:4}}
+<Button variant="outlined" size="small" sx={{mt:4}}
  type="submit">Log In</Button>
-
+</FormField>
 </div>
     );
 };

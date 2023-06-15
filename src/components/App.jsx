@@ -10,7 +10,7 @@ import authOperations from "../redux/Auth/authOperation";
 
 import { Layout } from "./Layout/Layout";
 import PrivateRoute from "../routes/PrivateRoute";
-import PublicRoute from "routes/PublicRoutes";
+import PublicRoute from "../routes/PublicRoutes";
 import { Container } from "@mui/material";
 
 const Home = lazy(()=> import("../RegisterView/Home"));
@@ -59,7 +59,7 @@ dispatch(authOperations.fetchCurrentUser());
 
 </Routes>
   )}
-  <ToastContainer />
+  <ToastContainer icon={false} autoClose={3000}/>
   </Container>
 );
 };

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { infoToast } from "components/Notification";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -21,7 +22,9 @@ async (credentials,thunkAPI)=> {
         token.set(response.data.token);
         return response.data;
     } catch(error){
-        infoToast(`This user is already registered`);
+        toast.info("This user is already registered", {
+            position: toast.POSITION.TOP_RIGHT
+          });
         return thunkAPI.rejectWithValue(error.message);
     }
 }
@@ -33,7 +36,9 @@ async (credentials,thunkAPI)=> {
         token.set(response.data.token);
         return response.data;
     } catch(error){
-        infoToast(`Incorrect login or password`);
+        toast.info("Incorrect login or password", {
+            position: toast.POSITION.TOP_RIGHT
+          });
         return thunkAPI.rejectWithValue(error.message);
     } 
     },

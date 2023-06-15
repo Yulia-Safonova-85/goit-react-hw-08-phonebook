@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { errorToast} from "components/Notification";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const fetchContacts = createAsyncThunk(
 "contacts/fetchContacts",
@@ -9,7 +11,9 @@ async (_,thunkAPI)=> {
         const response = await axios.get("/contacts");
         return response.data;
     } catch(error){
-        errorToast('...Something get wrong');
+        toast.error('...Something get wrong', {
+            position: toast.POSITION.TOP_RIGHT
+          });
         return thunkAPI.rejectWithValue(error.message);
     }
 }
@@ -23,8 +27,10 @@ export const addContact = createAsyncThunk(
         const response = await axios.post("/contacts", contact)
         return response.data;
     } catch (error) {
-        errorToast('...Something get wrong');
- return thunkAPI.rejectWithValue(error.message);
+        toast.error('...Something get wrong', {
+            position: toast.POSITION.TOP_RIGHT
+          });
+    return thunkAPI.rejectWithValue(error.message);
     }
 }
 );

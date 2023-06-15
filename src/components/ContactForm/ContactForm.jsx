@@ -4,7 +4,9 @@ import {FormField, Form,ErrorMessage} from './ContactForm.styled';
 import { addContact } from 'redux/Contacts/Operations';
 import { useDispatch,useSelector } from 'react-redux';
 import { getContacts } from 'redux/Contacts/selectors';
-import { infoToast } from "components/Notification";
+
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import {  Button }from '@mui/material';
 
 const schema = Yup.object().shape({
@@ -25,7 +27,9 @@ const contacts = useSelector(getContacts);
         const findName = contacts.find(({name}) => name.toLowerCase() === normalizedName);
 
         if (findName) {
-            return infoToast(`${values.name} is already in contact`);
+            return toast.info(`${values.name} is already in contact`, {
+                position: toast.POSITION.TOP_CENTER
+              });
            }
            dispatch(addContact(values));
            actions.resetForm();
